@@ -16,6 +16,7 @@ startup_32:
     movw %ax,   %fs
     movl $0x18, %eax 
     movw %ax,   %gs
+    lss stack_start,%esp
     call setup_idt
     call setup_gdt
     call set_clock_idt

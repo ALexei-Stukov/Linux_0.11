@@ -5,7 +5,7 @@ CCFLAG 	:=	-m32 -I../include -nostdinc -Wall -fomit-frame-pointer -c -fno-pie
 
 LDFLAG	:=	-Ttext 0x0 -s --oformat binary -m elf_i386
 INCDIR	:=	../include
-OBJS	:=	head.o main.o
+OBJS	:=	head.o main.o sched.o
 
 system.bin: $(OBJS)
 	$(LD)	$(LDFLAG) -e startup_32 -o $@ $^
@@ -15,6 +15,9 @@ head.o: head.S
 
 main.o: main.c
 	$(GCC)	$(CCFLAG) -o $@ $^
+
+sched.o : sched.c
+	$(GCC) $(CCFLAG) -o $@ $<
 
 clean:
 	rm *.o
