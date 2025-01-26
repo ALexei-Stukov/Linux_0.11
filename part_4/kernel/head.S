@@ -16,7 +16,9 @@ startup_32:
     movw %ax,   %fs
     movl $0x18, %eax 
     movw %ax,   %gs
-    lss stack_start,%esp
+
+    lss stack_start,%esp           # 设置初始进程所需的栈
+
     call setup_idt
     call setup_gdt
     call set_clock_idt
